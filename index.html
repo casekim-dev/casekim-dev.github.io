@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kim Kyung-woo | Robotics Engineer</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+        }
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* Header */
+        header {
+            text-align: center;
+            padding: 80px 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        h1 { margin: 0; font-size: 2.5rem; color: var(--primary-color); }
+        .tagline { color: #666; font-size: 1.2rem; margin-top: 10px; font-weight: 300; }
+        .contact-info { margin-top: 20px; font-size: 0.9rem; }
+        .contact-info a { color: var(--accent-color); text-decoration: none; margin: 0 10px; }
+        
+        /* Sections */
+        section {
+            background: white;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+        }
+        h2 {
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+        
+        /* Items */
+        .item { margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .item:last-child { border-bottom: none; }
+        .item-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
+        .item-title { font-weight: bold; font-size: 1.1rem; }
+        .item-date { color: #888; font-size: 0.9rem; }
+        .item-desc { margin-top: 10px; color: #555; }
+        .tech-stack { margin-top: 8px; font-size: 0.85rem; color: var(--accent-color); font-weight: 500; }
+        
+        /* Award List */
+        .award-list { list-style: none; padding: 0; }
+        .award-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .award-list li::before { content: "🏆"; position: absolute; left: 0; font-size: 0.8rem; top: 3px; }
+
+        /* Footer */
+        footer { text-align: center; padding: 40px; color: #888; font-size: 0.8rem; }
+        
+        @media (max-width: 600px) {
+            header { padding: 40px 20px; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Kim Kyung-woo (CaseKim)</h1>
+        <p class="tagline">"사람을 위한 따뜻한 기술로 세상을 바꿀 수 있다고 믿습니다"</p>
+        <div class="contact-info">
+            <a href="mailto:casekim41@gmail.com">casekim41@gmail.com</a> |
+            <a href="https://github.com/casekim41" target="_blank">GitHub</a> |
+            <a href="https://blog.naver.com/val0401" target="_blank">Blog</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="about">
+            <h2>Education</h2>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">서강대학교 (Sogang University)</span>
+                    <span class="item-date">2026.09 ~ (예정)</span>
+                </div>
+                <div class="item-desc">전자공학과 석사과정 (로봇시스템제어 연구실, 지도교수: 남창주)</div>
+            </div>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">건국대학교 (Konkuk University)</span>
+                    <span class="item-date">2020.03 ~ 2026.08</span>
+                </div>
+                <div class="item-desc">전기전자공학부 학사</div>
+            </div>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">대전대신고등학교</span>
+                    <span class="item-date">2016.03 ~ 2019.02</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Work Experience</h2>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">커피바라 (Coffeebara) | 대표 (Founder)</span>
+                    <span class="item-date">2025.08 ~ 2026.01</span>
+                </div>
+                <div class="item-desc">
+                    • 일회용 컵 완전 자동 분리 시스템 'NOCO' 개발 및 창업<br>
+                    • CES 2026 참가 및 임베디드 SW 경진대회 대상 수상
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">(주)무인탐사연구소 (UEL) | 연구원</span>
+                    <span class="item-date">2023.07 ~ 2025.08</span>
+                </div>
+                <div class="item-desc">
+                    • 임베디드 시스템 연구 및 로버(Rover) 제어 시스템 개발<br>
+                    • 건설 현장용 험지 주행 로버의 SLAM 및 Navigation 구현<br>
+                    • STM32 BLDC 모터 제어 및 CAN 통신 프로토콜 설계
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Key Projects</h2>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">일회용 컵 완전 자동 분리 시스템</span>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-desc">
+                    비전 인식(YOLO)과 로봇 제어를 결합한 친환경 자동화 수거 시스템. 컵의 잔여 음료 처리, 세척, 적재를 자동화함.
+                </div>
+                <div class="tech-stack">#OpenCV #Embedded_System #Automation #StartUp</div>
+            </div>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">달 탐사 로버 위치 기반 군집 제어</span>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-desc">
+                    달 표면 환경을 가정한 다중 로버의 위치 추정 알고리즘 연구. 제어로봇시스템학회(ICROS) 발표.
+                </div>
+                <div class="tech-stack">#ROS2 #SLAM #Navigation #Multi-Robot</div>
+            </div>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">디지털 트윈 주행 로봇 구현</span>
+                    <span class="item-date">2023</span>
+                </div>
+                <div class="item-desc">
+                    가상 환경(Sim)과 실제 로봇(Real) 간의 동기화 주행 시스템 구현. 레이싱 휠 연동 제어.
+                </div>
+                <div class="tech-stack">#Digital_Twin #Socket.io #ROS</div>
+            </div>
+        </section>
+
+        <section id="awards">
+            <h2>Honors & Awards</h2>
+            <ul class="award-list">
+                <li><strong>제22회 임베디드 SW경진대회 대상 (산업통상자원부 장관상)</strong> | 2024</li>
+                <li>제16회 건국대학교 창의설계경진대회 대상 (총장상) | 2024</li>
+                <li>2023 R-BIZ 챌린지 우주 탐사 개발 로봇 챌린지 2위 (특허청장상) | 2023</li>
+                <li>청소년 비즈쿨 공로 표창 (중소기업청장상) | 2016</li>
+                <li>TOEIC 980점 | 2025.03</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Kim Kyung-woo. All rights reserved.</p>
+        <p>Built with Passion & Code.</p>
+    </footer>
+
+</body>
+</html>
