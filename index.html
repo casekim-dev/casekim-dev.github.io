@@ -323,21 +323,21 @@
             <h2>Media Coverage</h2>
             <div class="media-grid">
                 <a href="https://n.news.naver.com/mnews/article/469/0000907281?sid=101" target="_blank" class="media-card">
-                    <img src="" alt="CES 2026" class="media-thumb" data-url="https://n.news.naver.com/mnews/article/469/0000907281?sid=101" onerror="this.parentElement.style.minHeight='140px'">
+                    <img src="" alt="CES 2026" class="media-thumb" data-article-id="469/0000907281" onerror="this.parentElement.style.minHeight='140px'">
                     <div class="media-content">
                         <div class="media-title">[CES 2026 서울통합관] 커피바라, CES 2026서 AI 분리배출 로봇 'NOCO' 공개</div>
                         <div class="media-date">2026.01.06. | 한국일보</div>
                     </div>
                 </a>
                 <a href="https://n.news.naver.com/mnews/article/047/0002391373?sid=103" target="_blank" class="media-card">
-                    <img src="" alt="오마이뉴스" class="media-thumb" data-url="https://n.news.naver.com/mnews/article/047/0002391373?sid=103" onerror="this.parentElement.style.minHeight='140px'">
+                    <img src="https://dnvefa72aaa6o.cloudfront.net/origin/article/4740/20230508/0000391373_20230508082716.jpg?type=f400_300&expires=2147483647&hmac=7s4PqYGNzfKEh6YNI0VrJUEFYtY8ZKGCgBhvExs58Z8" alt="오마이뉴스" class="media-thumb" onerror="this.parentElement.style.minHeight='140px'">
                     <div class="media-content">
                         <div class="media-title">소방관 아버지 보며 로봇의 꿈을 키운 대학생입니다</div>
                         <div class="media-date">2023.05.08. | 오마이뉴스</div>
                     </div>
                 </a>
                 <a href="https://blog.naver.com/dreamkonkuk/223683141236" target="_blank" class="media-card">
-                    <img src="" alt="건국대학교" class="media-thumb" data-url="https://blog.naver.com/dreamkonkuk/223683141236" onerror="this.parentElement.style.minHeight='140px'">
+                    <img src="" alt="건국대학교" class="media-thumb" data-blog-id="dreamkonkuk/223683141236" onerror="this.parentElement.style.minHeight='140px'">
                     <div class="media-content">
                         <div class="media-title">[건국대 공식 블로그] 제22회 임베디드 SW경진대회 대상 및 제16회 창의설계경진대회 대상 수상 커피바라팀 인터뷰</div>
                         <div class="media-date">2024.12.05 | 건국대학교</div>
@@ -353,27 +353,54 @@
     </footer>
 
     <script>
-        async function fetchOGImage(url, imgElement) {
+        // 네이버 뉴스 API를 사용하여 og:image 가져오기
+        async function fetchNaverNewsImage(articleId, imgElement) {
             try {
-                // CORS 프록시를 통해 HTML 가져오기
-                const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
+                const [pressId, articleNum] = articleId.split('/');
+                const url = `https://n.news.naver.com/mnews/article/${articleId}`;
+                
+                // CORS 프록시 사용
+                const proxyUrl = 'https://cors-anywhere.herokuapp.com/' + url;
                 const response = await fetch(proxyUrl);
                 const html = await response.text();
                 
-                // og:image 메타 태그 추출
-                const ogImageMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
-                if (ogImageMatch && ogImageMatch[1]) {
-                    imgElement.src = ogImageMatch[1];
-                    imgElement.style.display = 'block';
+                // og:image 추출
+                const ogMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
+                if (ogMatch && ogMatch[1]) {
+                    imgElement.src = ogMatch[1];
                 }
             } catch (error) {
-                console.log('og:image 로드 실패:', url);
+                console.log('뉴스 이미지 로드 실패:', articleId);
+            }
+        }
+        
+        // 네이버 블로그 API를 사용하여 og:image 가져오기
+        async function fetchBlogImage(blogId, imgElement) {
+            try {
+                const url = `https://blog.naver.com/${blogId}`;
+                const proxyUrl = 'https://cors-anywhere.herokuapp.com/' + url;
+                const response = await fetch(proxyUrl);
+                const html = await response.text();
+                
+                // og:image 추출
+                const ogMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
+                if (ogMatch && ogMatch[1]) {
+                    imgElement.src = ogMatch[1];
+                }
+            } catch (error) {
+                console.log('블로그 이미지 로드 실패:', blogId);
             }
         }
         
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('img[data-url]').forEach(img => {
-                fetchOGImage(img.dataset.url, img);
+            // 네이버 뉴스 이미지
+            document.querySelectorAll('img[data-article-id]').forEach(img => {
+                fetchNaverNewsImage(img.dataset.articleId, img);
+            });
+            
+            // 네이버 블로그 이미지
+            document.querySelectorAll('img[data-blog-id]').forEach(img => {
+                fetchBlogImage(img.dataset.blogId, img);
             });
         });
     </script>
