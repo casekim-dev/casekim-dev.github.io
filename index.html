@@ -44,7 +44,7 @@
             object-fit: cover;
             margin-bottom: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            background-color: #eee; /* 이미지 없을 때 회색 배경 */
+            background-color: #eee;
         }
         h1 { margin: 0; font-size: 2.5rem; color: var(--primary-color); letter-spacing: -0.5px; }
         .tagline { color: #555; font-size: 1.1rem; margin-top: 10px; font-weight: 400; }
@@ -110,27 +110,46 @@
             text-decoration: none;
             color: inherit;
             background: #fff;
+            display: flex;
+            flex-direction: column;
         }
         .media-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
         .media-thumb {
             width: 100%;
             height: 140px;
-            background-color: #ddd;
+            background-color: #e9ecef;
             object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 2rem;
         }
-        .media-content { padding: 15px; }
-        .media-title { font-weight: bold; font-size: 1rem; margin-bottom: 5px; line-height: 1.4; }
+        .media-content { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .media-title { font-weight: bold; font-size: 1rem; margin-bottom: 10px; line-height: 1.4; }
         .media-date { font-size: 0.8rem; color: #999; }
 
-        /* --- Publications List --- */
+        /* --- List Styles --- */
+        .list-style-none { list-style: none; padding: 0; }
+        .list-style-none li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+        
+        /* Publications Icon */
         .pub-list { list-style: none; padding: 0; }
         .pub-list li { margin-bottom: 15px; padding-left: 25px; position: relative; }
-        .pub-list li::before { 
-            content: "📄"; 
-            position: absolute; left: 0; top: 2px; font-size: 1rem; 
-        }
-        .pub-title { font-weight: 600; color: #222; }
-        .pub-info { font-size: 0.9rem; color: #666; margin-top: 2px; }
+        .pub-list li::before { content: "📄"; position: absolute; left: 0; top: 2px; font-size: 1rem; }
+        
+        /* Patents Icon */
+        .patent-list { list-style: none; padding: 0; }
+        .patent-list li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+        .patent-list li::before { content: "💡"; position: absolute; left: 0; top: 2px; font-size: 1rem; }
+        
+        /* Awards Icon */
+        .award-list { list-style: none; padding: 0; }
+        .award-list li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+        .award-list li::before { content: "🏆"; position: absolute; left: 0; top: 2px; font-size: 1rem; }
+
+        .list-title { font-weight: 600; color: #222; }
+        .list-info { font-size: 0.9rem; color: #666; margin-top: 2px; }
 
         /* --- Footer --- */
         footer { text-align: center; padding: 60px 20px; color: #999; font-size: 0.85rem; }
@@ -184,7 +203,9 @@
                 <span class="item-role">Research Intern | 서강대학교</span>
                 <div class="item-desc">
                     <ul>
-                        <li>TBD</li>
+                        <li><strong>휴머노이드(IGRIS-C) 및 모바일 매니퓰레이터(Gen3+Dingo) 제어 연구</strong></li>
+                        <li>VLA(Vision-Language-Action) 모델 기반의 비정형 물체 파지 및 조작 연구 수행</li>
+                        <li>다지 핸드(4-finger hand) 하드웨어 인터페이스 및 ROS2 환경 구축 담당</li>
                     </ul>
                 </div>
             </div>
@@ -196,9 +217,8 @@
                 <span class="item-role">Undergraduate Researcher | 건국대학교</span>
                 <div class="item-desc">
                     <ul>
-                        <li>정부 보안 과제 참여</li>
-                        <li>GNSS 재밍 식별 및 WLAN 기반 거리 측정 정밀도 분석 연구 참여</li>
-                        <li>각종 로봇 프로젝트 참여</li>
+                        <li>정부 보안 과제 참여: GNSS 재밍 식별 및 WLAN 기반 실내 측위 정밀도 분석</li>
+                        <li>연구비 지출 관리 및 학회 논문 작성 (한국통신학회 발표)</li>
                     </ul>
                 </div>
             </div>
@@ -209,16 +229,24 @@
             <div class="item">
                 <div class="item-header">
                     <span class="item-title">커피바라 (Coffeebara)</span>
-                    <span class="item-date">2025.08 ~ 2026.01</span>
+                    <span class="item-date">2025.01 ~ 2026.01</span>
                 </div>
                 <span class="item-role">Founder & CEO</span>
                 <div class="item-desc">
                     <ul>
-                        <li>일회용 컵 완전 자동 분리 시스템 'NOCO' 개발 및 CES 2026 참가</li>
-                        <li>임베디드 SW 경진대회 산업통상자원부 장관상(대상) 수상</li>
+                        <li><strong>일회용 컵 완전 자동 분리 시스템 'NOCO' 개발 및 사업화 총괄</strong></li>
+                        <li>(2025.01 ~ 07) 초기 아이디어 구상, 시장 조사 및 프로토타입(MVP) 선행 개발</li>
+                        <li>(2025.08 ~ ) 사업자 등록, CES 2026 참가 및 임베디드 SW 경진대회 대상 수상</li>
+                        <li>YOLOv8 기반 객체 인식 AI 모델 학습 및 로봇 팔(Manipulator) 제어 시스템 구축</li>
                     </ul>
                 </div>
+                <div class="tech-stack">
+                    <span class="tag">Startup</span>
+                    <span class="tag">Deep Learning</span>
+                    <span class="tag">Robotics</span>
+                </div>
             </div>
+
             <div class="item">
                 <div class="item-header">
                     <span class="item-title">(주)무인탐사연구소 (UEL)</span>
@@ -227,16 +255,17 @@
                 <span class="item-role">Embedded System Researcher</span>
                 <div class="item-desc">
                     <ul>
-                        <li><strong>누리호(KSLV-II) 4차 발사 부탑재위성 개발 참여</strong> (임베디드 시스템 담당)</li>
+                        <li><strong>🚀 누리호(KSLV-II) 4차 발사 큐브위성 탑재체 개발 참여</strong></li>
+                        <li>- 위성 임베디드 시스템 설계 및 탑재체 데이터 처리 로직 구현 (C/C++, STM32)</li>
                         <li>건설 현장 및 험지 주행용 로버(Rover)의 SLAM/Navigation 시스템 개발</li>
-                        <li>STM32 기반 BLDC 모터 제어기 설계 및 CAN 통신 프로토콜 최적화</li>
+                        <li>CAN 통신 프로토콜 최적화 및 모터 제어기 펌웨어 개발</li>
                     </ul>
                 </div>
                 <div class="tech-stack">
+                    <span class="tag">Aerospace</span>
                     <span class="tag">ROS2</span>
-                    <span class="tag">C/C++</span>
+                    <span class="tag">Embedded C/C++</span>
                     <span class="tag">STM32</span>
-                    <span class="tag">Python</span>
                 </div>
             </div>
         </section>
@@ -265,20 +294,25 @@
 
         <section id="patents">
             <h2>Patents</h2>
-            <div class="item">
-                <div class="item-header">
-                    <span class="item-title">특허 명칭을 이곳에 입력하세요</span>
-                    <span class="item-date">출원/등록 번호</span>
-                </div>
-                <div class="item-desc">
-                    간단한 특허 설명 (예: 컵 자동 분리를 위한 로봇 매니퓰레이터 제어 방법)
-                </div>
-            </div>
-            </section>
+            <ul class="patent-list">
+                <li>
+                    <div class="list-title">태양광 패널 및 모터를 이용하여 태양광 에너지를 효율적으로 획득하고 관리하는 태양광 에너지 관리 방법</div>
+                    <div class="list-info">
+                        등록번호: 1028753540000 (2025.10.20) | 출원: 1020250004494 (2025.01.13)
+                    </div>
+                </li>
+                <li>
+                    <div class="list-title">일회용 컵 분리 배출 장치</div>
+                    <div class="list-info">
+                        출원번호: 10-2025-0031410 (2025.03.11)
+                    </div>
+                </li>
+            </ul>
+        </section>
 
         <section id="awards">
             <h2>Honors & Awards</h2>
-            <ul class="pub-list">
+            <ul class="award-list">
                 <li><strong>제22회 임베디드 SW경진대회 대상 (산업통상자원부 장관상)</strong> | 2024</li>
                 <li>제16회 건국대학교 창의설계경진대회 대상 (총장상) | 2024</li>
                 <li>2023 R-BIZ 챌린지 우주 탐사 개발 로봇 챌린지 2위 (특허청장상) | 2023</li>
@@ -289,18 +323,26 @@
         <section id="media">
             <h2>Media Coverage</h2>
             <div class="media-grid">
-                <a href="https://기사링크1.com" target="_blank" class="media-card">
-                    <img src="https://via.placeholder.com/300x150" alt="기사 썸네일" class="media-thumb">
+                <a href="https://n.news.naver.com/mnews/article/469/0000907281?sid=101" target="_blank" class="media-card">
+                    <div class="media-thumb">📰</div>
                     <div class="media-content">
-                        <div class="media-title">기사 제목을 입력하세요 (예: 커피바라, CES 2026서 혁신상 수상...)</div>
-                        <div class="media-date">2026.01.15 | XX일보</div>
+                        <div class="media-title">[CES 2026 서울통합관] 커피바라, CES 2026서 AI 분리배출 로봇 ‘NOCO’ 공개</div>
+                        <div class="media-date">2026.01.06. | 한국일보</div>
                     </div>
                 </a>
-                <a href="https://기사링크2.com" target="_blank" class="media-card">
-                    <img src="https://via.placeholder.com/300x150" alt="기사 썸네일" class="media-thumb">
+                <a href="https://n.news.naver.com/mnews/article/047/0002391373?sid=103" target="_blank" class="media-card">
+                    <div class="media-thumb">📰</div>
                     <div class="media-content">
-                        <div class="media-title">임베디드 SW 경진대회 대상 수상 인터뷰</div>
-                        <div class="media-date">2024.12.20 | 전자신문</div>
+                        <div class="media-title">소방관 아버지 보며 로봇의 꿈을 키운 대학생입니다</div>
+                        <div class="media-date">2023.05.08. | 오마이뉴스</div>
+                    </div>
+                </a>
+                <a href="https://blog.naver.com/dreamkonkuk/223683141236" target="_blank" class="media-card">
+                    <div class="media-thumb">🏫</div>
+                    <div class="media-content">
+                        <div class="media-title">[건국대 공식 블로그] [건국대] 제22회 임베디드 SW경진대회 자유공모 부문 산업통상자원부 장관상 수상, 제 16회 창의설계경진대회 대상 수상 커피바라팀 인터뷰
+[출처] [건국대] 제22회 임베디드 SW경진대회 자유공모 부문 산업통상자원부 장관상 수상, 제 16회 창의설계경진대회 대상 수상 커피바라팀 인터뷰</div>
+                        <div class="media-date">2024.12.05 | 건국대학교</div>
                     </div>
                 </a>
             </div>
@@ -310,7 +352,6 @@
 
     <footer>
         <p>&copy; 2026 Kim Kyung-woo. All rights reserved.</p>
-        <p>Built with Passion & Code.</p>
     </footer>
 
 </body>
