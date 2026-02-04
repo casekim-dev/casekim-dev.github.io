@@ -323,7 +323,7 @@
             <h2>Media Coverage</h2>
             <div class="media-grid">
                 <a href="https://n.news.naver.com/mnews/article/469/0000907281?sid=101" target="_blank" class="media-card">
-                    <img src="" alt="CES 2026" class="media-thumb" data-article-id="469/0000907281" onerror="this.parentElement.style.minHeight='140px'">
+                    <img src="https://img.hankookilbo.com/upload-images/2026/01/06/0000993_20260106103020.jpg" alt="CES 2026" class="media-thumb" onerror="this.style.backgroundColor='#f0f2f5'">
                     <div class="media-content">
                         <div class="media-title">[CES 2026 서울통합관] 커피바라, CES 2026서 AI 분리배출 로봇 'NOCO' 공개</div>
                         <div class="media-date">2026.01.06. | 한국일보</div>
@@ -337,7 +337,7 @@
                     </div>
                 </a>
                 <a href="https://blog.naver.com/dreamkonkuk/223683141236" target="_blank" class="media-card">
-                    <img src="" alt="건국대학교" class="media-thumb" data-blog-id="dreamkonkuk/223683141236" onerror="this.parentElement.style.minHeight='140px'">
+                    <img src="https://blogthumb.naver.net/MjAyNDEyMDRfMTcz/MDAxNzAxNjMwOTI1NzI3.bWa9TgIkTZBZQFN0PQ0_j5LHJPoKEp3dLNFcJzFHaHEg.RxY_mqPyqT5SqSBCRBqO2ZJ_1RTLLPAZr7s4-lZDfDsg.JPEG.dreamkonkuk/SE-a52eb3e4-4fb6-447b-a08a-17b0c93dc90a.jpg" alt="건국대학교" class="media-thumb" onerror="this.style.backgroundColor='#f0f2f5'">
                     <div class="media-content">
                         <div class="media-title">[건국대 공식 블로그] 제22회 임베디드 SW경진대회 대상 및 제16회 창의설계경진대회 대상 수상 커피바라팀 인터뷰</div>
                         <div class="media-date">2024.12.05 | 건국대학교</div>
@@ -353,56 +353,7 @@
     </footer>
 
     <script>
-        // 네이버 뉴스 API를 사용하여 og:image 가져오기
-        async function fetchNaverNewsImage(articleId, imgElement) {
-            try {
-                const [pressId, articleNum] = articleId.split('/');
-                const url = `https://n.news.naver.com/mnews/article/${articleId}`;
-                
-                // CORS 프록시 사용
-                const proxyUrl = 'https://cors-anywhere.herokuapp.com/' + url;
-                const response = await fetch(proxyUrl);
-                const html = await response.text();
-                
-                // og:image 추출
-                const ogMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
-                if (ogMatch && ogMatch[1]) {
-                    imgElement.src = ogMatch[1];
-                }
-            } catch (error) {
-                console.log('뉴스 이미지 로드 실패:', articleId);
-            }
-        }
-        
-        // 네이버 블로그 API를 사용하여 og:image 가져오기
-        async function fetchBlogImage(blogId, imgElement) {
-            try {
-                const url = `https://blog.naver.com/${blogId}`;
-                const proxyUrl = 'https://cors-anywhere.herokuapp.com/' + url;
-                const response = await fetch(proxyUrl);
-                const html = await response.text();
-                
-                // og:image 추출
-                const ogMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
-                if (ogMatch && ogMatch[1]) {
-                    imgElement.src = ogMatch[1];
-                }
-            } catch (error) {
-                console.log('블로그 이미지 로드 실패:', blogId);
-            }
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            // 네이버 뉴스 이미지
-            document.querySelectorAll('img[data-article-id]').forEach(img => {
-                fetchNaverNewsImage(img.dataset.articleId, img);
-            });
-            
-            // 네이버 블로그 이미지
-            document.querySelectorAll('img[data-blog-id]').forEach(img => {
-                fetchBlogImage(img.dataset.blogId, img);
-            });
-        });
+        // Placeholder - 이미지는 src에 직접 입력됨
     </script>
 </body>
 </html>
