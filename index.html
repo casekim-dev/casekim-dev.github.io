@@ -323,23 +323,23 @@
             <h2>Media Coverage</h2>
             <div class="media-grid">
                 <a href="https://n.news.naver.com/mnews/article/469/0000907281?sid=101" target="_blank" class="media-card">
-                    <img src="" alt="CES 2026" class="media-thumb" data-url="https://n.news.naver.com/mnews/article/469/0000907281?sid=101" onerror="this.style.display='none'">
+                    <img src="https://thumbnail.naver.com/h_120/https://img.hankookilbo.com/upload-images/2026/01/06/0000993_20260106103020.jpg" alt="CES 2026" class="media-thumb" onerror="this.style.display='none'">
                     <div class="media-content">
                         <div class="media-title">[CES 2026 서울통합관] 커피바라, CES 2026서 AI 분리배출 로봇 'NOCO' 공개</div>
                         <div class="media-date">2026.01.06. | 한국일보</div>
                     </div>
                 </a>
                 <a href="https://n.news.naver.com/mnews/article/047/0002391373?sid=103" target="_blank" class="media-card">
-                    <img src="" alt="오마이뉴스" class="media-thumb" data-url="https://n.news.naver.com/mnews/article/047/0002391373?sid=103" onerror="this.style.display='none'">
+                    <img src="https://thumbnail.naver.com/h_120/https://d.omni-app.com/1683590868228" alt="오마이뉴스" class="media-thumb" onerror="this.style.display='none'">
                     <div class="media-content">
                         <div class="media-title">소방관 아버지 보며 로봇의 꿈을 키운 대학생입니다</div>
                         <div class="media-date">2023.05.08. | 오마이뉴스</div>
                     </div>
                 </a>
                 <a href="https://blog.naver.com/dreamkonkuk/223683141236" target="_blank" class="media-card">
-                    <img src="" alt="건국대학교" class="media-thumb" data-url="https://blog.naver.com/dreamkonkuk/223683141236" onerror="this.style.display='none'">
+                    <img src="https://blogthumb.naver.net/MjAyNDEyMDRfMTcz/MDAxNzAxNjMwOTI1NzI3.bWa9TgIkTZBZQFN0PQ0_j5LHJPoKEp3dLNFcJzFHaHEg.RxY_mqPyqT5SqSBCRBqO2ZJ_1RTLLPAZr7s4-lZDfDsg.JPEG.dreamkonkuk/SE-a52eb3e4-4fb6-447b-a08a-17b0c93dc90a.jpg" alt="건국대학교" class="media-thumb" onerror="this.style.display='none'">
                     <div class="media-content">
-                        <div class="media-title">[건국대 공식 블로그] [건국대] 제22회 임베디드 SW경진대회 자유공모 부문 산업통상자원부 장관상 수상, 제 16회 창의설계경진대회 대상 수상 커피바라팀 인터뷰</div>
+                        <div class="media-title">[건국대 공식 블로그] 제22회 임베디드 SW경진대회 대상 및 제16회 창의설계경진대회 대상 수상 커피바라팀 인터뷰</div>
                         <div class="media-date">2024.12.05 | 건국대학교</div>
                     </div>
                 </a>
@@ -353,29 +353,7 @@
     </footer>
 
     <script>
-        async function fetchOGImage(url, imgElement) {
-            try {
-                const response = await fetch(url);
-                const html = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const ogImage = doc.querySelector('meta[property="og:image"]');
-                if (ogImage && ogImage.content) {
-                    imgElement.src = ogImage.content;
-                }
-            } catch (error) {
-                console.log('이미지 로드 실패:', url);
-            }
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.media-card').forEach(card => {
-                const img = card.querySelector('img');
-                if (img && img.dataset.url) {
-                    fetchOGImage(img.dataset.url, img);
-                }
-            });
-        });
+        // 필요시 나중에 추가
     </script>
 </body>
 </html>
