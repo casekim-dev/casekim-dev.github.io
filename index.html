@@ -323,21 +323,21 @@
             <h2>Media Coverage</h2>
             <div class="media-grid">
                 <a href="https://n.news.naver.com/mnews/article/469/0000907281?sid=101" target="_blank" class="media-card">
-                    <div class="media-thumb">📰</div>
+                    <img src="https://s.pstatic.net/static/www/mobile/edit/2020/0908/mobile_171042424394.png" alt="CES 2026" class="media-thumb" onerror="this.style.display='none'">
                     <div class="media-content">
-                        <div class="media-title">[CES 2026 서울통합관] 커피바라, CES 2026서 AI 분리배출 로봇 ‘NOCO’ 공개</div>
+                        <div class="media-title">[CES 2026 서울통합관] 커피바라, CES 2026서 AI 분리배출 로봇 'NOCO' 공개</div>
                         <div class="media-date">2026.01.06. | 한국일보</div>
                     </div>
                 </a>
                 <a href="https://n.news.naver.com/mnews/article/047/0002391373?sid=103" target="_blank" class="media-card">
-                    <div class="media-thumb">📰</div>
+                    <img src="https://s.pstatic.net/static/www/mobile/edit/2016/1104/mobile_192358424202.png" alt="오마이뉴스" class="media-thumb" onerror="this.style.display='none'">
                     <div class="media-content">
                         <div class="media-title">소방관 아버지 보며 로봇의 꿈을 키운 대학생입니다</div>
                         <div class="media-date">2023.05.08. | 오마이뉴스</div>
                     </div>
                 </a>
                 <a href="https://blog.naver.com/dreamkonkuk/223683141236" target="_blank" class="media-card">
-                    <div class="media-thumb">🏫</div>
+                    <img src="https://s.pstatic.net/static/www/mobile/edit/2018/0611/mobile_171548424139.png" alt="건국대학교" class="media-thumb" onerror="this.style.display='none'">
                     <div class="media-content">
                         <div class="media-title">[건국대 공식 블로그] [건국대] 제22회 임베디드 SW경진대회 자유공모 부문 산업통상자원부 장관상 수상, 제 16회 창의설계경진대회 대상 수상 커피바라팀 인터뷰</div>
                         <div class="media-date">2024.12.05 | 건국대학교</div>
@@ -352,5 +352,30 @@
         <p>&copy; 2026 Kim Kyung-woo. All rights reserved.</p>
     </footer>
 
+    <script>
+        async function fetchOGImage(url, imgElement) {
+            try {
+                const response = await fetch(url);
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const ogImage = doc.querySelector('meta[property="og:image"]');
+                if (ogImage && ogImage.content) {
+                    imgElement.src = ogImage.content;
+                }
+            } catch (error) {
+                console.log('이미지 로드 실패:', url);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.media-card').forEach(card => {
+                const img = card.querySelector('img');
+                if (img && img.dataset.url) {
+                    fetchOGImage(img.dataset.url, img);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
