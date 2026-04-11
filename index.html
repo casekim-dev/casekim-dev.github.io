@@ -9,11 +9,10 @@
 
     <style>
         :root {
-            /* Warm Technology 느낌의 컬러 팔레트 */
-            --primary-color: #2c3e50;    /* 짙은 남색 (전문성) */
-            --accent-color: #e67e22;     /* 따뜻한 오렌지 (Warmth & Creativity) */
+            --primary-color: #2c3e50;
+            --accent-color: #e67e22;
             --text-color: #333;
-            --bg-color: #f8f9fa;         /* 아주 살짝 톤다운된 배경으로 카드 집중도 향상 */
+            --bg-color: #f8f9fa;
             --card-bg: #ffffff;
             --light-gray: #f0f2f5;
         }
@@ -29,20 +28,20 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
+            overflow-x: hidden; /* 스크롤 애니메이션 시 가로 흔들림 방지 */
         }
 
-        /* --- Animations --- */
-        @keyframes fadeInUp {
+        /* --- Header Animation --- */
+        @keyframes headerFadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Header --- */
         header {
             text-align: center;
             padding: 100px 20px 70px;
             background: linear-gradient(to bottom, #ffffff, var(--bg-color));
-            animation: fadeInUp 0.8s ease-out;
+            animation: headerFadeIn 1s ease-out; /* 헤더는 로드되자마자 나타남 */
         }
         .profile-img {
             width: 150px;
@@ -58,7 +57,6 @@
             transform: scale(1.05);
         }
         
-        /* 이름에 세련된 그라데이션 적용 */
         h1 { 
             margin: 0; 
             font-size: 2.8rem; 
@@ -84,25 +82,25 @@
             border-bottom-color: var(--accent-color); 
         }
 
-        /* --- Sections Common --- */
+        /* --- ✨ Scroll Reveal Sections ✨ --- */
         section {
             background: var(--card-bg);
             margin: 40px 0;
             padding: 45px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0; /* 애니메이션을 위해 초기 투명도 0 */
+            
+            /* 스크롤 전 기본 상태 (숨김 & 아래로 살짝 내려가 있음) */
+            opacity: 0; 
+            transform: translateY(40px); 
+            transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
-        /* 섹션 순서대로 시차를 두고 나타나게 함 */
-        section:nth-child(1) { animation-delay: 0.1s; }
-        section:nth-child(2) { animation-delay: 0.2s; }
-        section:nth-child(3) { animation-delay: 0.3s; }
-        section:nth-child(4) { animation-delay: 0.4s; }
-        section:nth-child(5) { animation-delay: 0.5s; }
-        section:nth-child(6) { animation-delay: 0.6s; }
-        section:nth-child(7) { animation-delay: 0.7s; }
+        /* 스크롤 시 부여될 클래스 (나타남) */
+        section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         h2 {
             border-left: 5px solid var(--accent-color);
@@ -113,7 +111,7 @@
             letter-spacing: -0.3px;
         }
 
-        /* --- Item Layout (마우스 오버 효과 추가) --- */
+        /* --- Item Layout --- */
         .item { 
             margin-bottom: 25px; 
             padding: 20px; 
@@ -135,7 +133,7 @@
         .item-desc ul { margin: 5px 0 0 0; padding-left: 20px; }
         .item-desc li { margin-bottom: 6px; }
         
-        /* --- Tags (세련된 테마 디자인) --- */
+        /* --- Tags --- */
         .tech-stack { margin-top: 15px; display: flex; flex-wrap: wrap; gap: 8px; }
         .tag {
             background-color: rgba(230, 126, 34, 0.1);
@@ -147,12 +145,9 @@
             border: 1px solid rgba(230, 126, 34, 0.2);
             transition: all 0.2s;
         }
-        .tag:hover {
-            background-color: var(--accent-color);
-            color: #fff;
-        }
+        .tag:hover { background-color: var(--accent-color); color: #fff; }
 
-        /* --- Grid Layout for Media --- */
+        /* --- Media Grid --- */
         .media-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -185,25 +180,16 @@
         .media-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 12px; line-height: 1.4; color: #222;}
         .media-date { font-size: 0.85rem; color: #999; font-weight: 500;}
 
-        /* --- List Styles --- */
+        /* --- Lists --- */
         .pub-list, .patent-list, .award-list { list-style: none; padding: 0; }
-        
-        /* Icons & Highlights */
-        .pub-list li, .patent-list li, .award-list li { 
-            margin-bottom: 18px; padding-left: 28px; position: relative; 
-            transition: transform 0.2s;
-        }
-        .pub-list li:hover, .patent-list li:hover, .award-list li:hover {
-            transform: translateX(3px);
-        }
+        .pub-list li, .patent-list li, .award-list li { margin-bottom: 18px; padding-left: 28px; position: relative; transition: transform 0.2s; }
+        .pub-list li:hover, .patent-list li:hover, .award-list li:hover { transform: translateX(3px); }
         .pub-list li::before { content: "📄"; position: absolute; left: 0; top: 2px; font-size: 1.1rem; }
         .patent-list li::before { content: "💡"; position: absolute; left: 0; top: 2px; font-size: 1.1rem; }
         .award-list li::before { content: "🏆"; position: absolute; left: 0; top: 2px; font-size: 1.1rem; }
 
         .list-title { font-weight: 600; color: #222; font-size: 1.05rem; line-height: 1.4; }
         .list-info { font-size: 0.95rem; color: #666; margin-top: 4px; }
-        
-        /* 이름 강조 (Bold) 색상 처리 */
         .pub-info strong { color: var(--primary-color); font-weight: 800; }
 
         footer { text-align: center; padding: 60px 20px; color: #999; font-size: 0.85rem; }
@@ -214,7 +200,7 @@
             section { padding: 25px; margin: 20px 0; }
             .item-header { flex-direction: column; gap: 8px; }
             .item-date { align-self: flex-start; }
-            .item:hover { transform: none; } /* 모바일에서는 호버 움직임 방지 */
+            .item:hover { transform: none; }
         }
     </style>
 </head>
@@ -260,7 +246,7 @@
                 <span class="item-role">Research Intern | 서강대학교</span>
                 <div class="item-desc">
                     <ul>
-                        <li>TBD (To Be Determined)</li>
+                        <li>Loco-Manipulation for Humanoids, AI models for robot control</li>
                     </ul>
                 </div>
             </div>
@@ -285,14 +271,14 @@
             <div class="item">
                 <div class="item-header">
                     <span class="item-title">커피바라 (Coffeebara)</span>
-                    <span class="item-date">2025.01 ~ 2026.01</span>
+                    <span class="item-date">2025.01 ~ </span>
                 </div>
                 <span class="item-role">Founder & CEO</span>
                 <div class="item-desc">
                     <ul>
                         <li><strong>일회용 컵 완전 자동 분리 시스템 'NOCO' 개발 및 사업화 총괄</strong></li>
-                        <li>(2025.01 ~ 07) 초기 아이디어 구상, 시장 조사 및 프로토타입(MVP) 선행 개발</li>
-                        <li>(2025.08 ~ ) 사업자 등록, CES 2026 참가</li>
+                        <li>CES2026 서울통합관 참가 및 AI 분리배출 로봇 'NOCO' 공개</li>
+                        <li>2025 학생창업유망팀 300+ 최종 선정</li>
                         <li>건국대학교 캠퍼스타운사업단 입주기업 (2025.05~)</li>
                     </ul>
                 </div>
@@ -377,7 +363,10 @@
                 <li>24-2 건국대학교 Learning & Sharing 최우수상 (대학교육혁신원장상) | 2024</li>
                 <li>제16회 건국대학교 창의설계경진대회 대상 (총장상) | 2024</li>
                 <li>2023 R-BIZ 챌린지 우주 탐사 개발 로봇 챌린지 2위 (특허청장상) | 2023</li>
+                <li>제15회 건국대학교 창의설계경진대회 장려상 (공과대학 학장상) | 2024</li>
                 <li>청소년 비즈쿨 공로 표창 (중소기업청장상) | 2016</li>
+                <li>청소년 기업가정신 캠프 투자 시뮬레이션 최우수 (창업진흥원장상) | 2016</li>
+                <li>청소년 비즈쿨 우수활동사례 (창업진흥원장상) | 2015</li>
                 <li style="color: var(--accent-color);"><strong>TOEIC 980점</strong> | 2025.03</li>
             </ul>
         </section>
@@ -418,6 +407,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // 1. 이미지 지연 로딩 처리
             const mediaImages = document.querySelectorAll('.media-thumb');
             mediaImages.forEach(img => {
                 const dataSrc = img.getAttribute('data-src');
@@ -429,6 +419,27 @@
                     };
                     newImg.src = dataSrc;
                 }
+            });
+
+            // 2. ✨ Scroll Reveal (Intersection Observer) ✨
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // 섹션이 화면에 15% 이상 보일 때 작동
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // 한 번 보이면 감지 해제 (반복 재생 방지)
+                    }
+                });
+            }, observerOptions);
+
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                observer.observe(section);
             });
         });
     </script>
