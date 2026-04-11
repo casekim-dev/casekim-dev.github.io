@@ -13,7 +13,7 @@
             --primary-color: #2c3e50;    /* 짙은 남색 (전문성) */
             --accent-color: #e67e22;     /* 따뜻한 오렌지 (Warmth & Creativity) */
             --text-color: #333;
-            --bg-color: #fcfcfc;
+            --bg-color: #f8f9fa;         /* 아주 살짝 톤다운된 배경으로 카드 집중도 향상 */
             --card-bg: #ffffff;
             --light-gray: #f0f2f5;
         }
@@ -31,11 +31,18 @@
             padding: 20px;
         }
 
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* --- Header --- */
         header {
             text-align: center;
-            padding: 80px 20px 60px;
-            background: linear-gradient(to bottom, #fff, var(--bg-color));
+            padding: 100px 20px 70px;
+            background: linear-gradient(to bottom, #ffffff, var(--bg-color));
+            animation: fadeInUp 0.8s ease-out;
         }
         .profile-img {
             width: 150px;
@@ -43,127 +50,171 @@
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             background-color: #eee;
+            transition: transform 0.3s ease;
         }
-        h1 { margin: 0; font-size: 2.5rem; color: var(--primary-color); letter-spacing: -0.5px; }
-        .tagline { color: #555; font-size: 1.1rem; margin-top: 10px; font-weight: 400; }
-        .contact-info { margin-top: 20px; font-size: 0.95rem; }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* 이름에 세련된 그라데이션 적용 */
+        h1 { 
+            margin: 0; 
+            font-size: 2.8rem; 
+            font-weight: 800;
+            letter-spacing: -0.5px; 
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .tagline { color: #555; font-size: 1.15rem; margin-top: 15px; font-weight: 400; }
+        .contact-info { margin-top: 25px; font-size: 1rem; font-weight: 500; }
         .contact-info a { 
             color: var(--primary-color); 
             text-decoration: none; 
-            margin: 0 10px; 
-            transition: color 0.3s;
-            border-bottom: 1px solid transparent;
+            margin: 0 12px; 
+            padding-bottom: 2px;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
         }
-        .contact-info a:hover { color: var(--accent-color); border-bottom-color: var(--accent-color); }
+        .contact-info a:hover { 
+            color: var(--accent-color); 
+            border-bottom-color: var(--accent-color); 
+        }
 
         /* --- Sections Common --- */
         section {
             background: var(--card-bg);
             margin: 40px 0;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            padding: 45px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0; /* 애니메이션을 위해 초기 투명도 0 */
         }
+        
+        /* 섹션 순서대로 시차를 두고 나타나게 함 */
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+        section:nth-child(5) { animation-delay: 0.5s; }
+        section:nth-child(6) { animation-delay: 0.6s; }
+        section:nth-child(7) { animation-delay: 0.7s; }
+
         h2 {
-            border-left: 4px solid var(--accent-color);
-            padding-left: 15px;
-            margin-bottom: 30px;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 18px;
+            margin-bottom: 35px;
             color: var(--primary-color);
-            font-size: 1.5rem;
+            font-size: 1.6rem;
+            letter-spacing: -0.3px;
         }
 
-        /* --- Item Layout --- */
-        .item { margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 25px; }
-        .item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+        /* --- Item Layout (마우스 오버 효과 추가) --- */
+        .item { 
+            margin-bottom: 25px; 
+            padding: 20px; 
+            border-radius: 12px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .item:hover {
+            background-color: #fcfcfc;
+            border-color: #f0f0f0;
+            transform: translateX(5px);
+            box-shadow: -5px 5px 15px rgba(0,0,0,0.02);
+        }
         .item-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
-        .item-title { font-weight: 700; font-size: 1.15rem; color: #000; }
-        .item-date { color: #888; font-size: 0.9rem; font-weight: 500; }
-        .item-role { font-weight: 600; color: #555; display: block; margin-bottom: 6px; }
+        .item-title { font-weight: 700; font-size: 1.2rem; color: #111; }
+        .item-date { color: #888; font-size: 0.9rem; font-weight: 600; background: var(--light-gray); padding: 4px 10px; border-radius: 20px;}
+        .item-role { font-weight: 600; color: var(--accent-color); display: block; margin-bottom: 8px; font-size: 0.95rem; }
         .item-desc { color: #444; font-size: 0.95rem; }
         .item-desc ul { margin: 5px 0 0 0; padding-left: 20px; }
-        .item-desc li { margin-bottom: 4px; }
+        .item-desc li { margin-bottom: 6px; }
         
-        /* --- Tags --- */
-        .tech-stack { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+        /* --- Tags (세련된 테마 디자인) --- */
+        .tech-stack { margin-top: 15px; display: flex; flex-wrap: wrap; gap: 8px; }
         .tag {
-            background-color: var(--light-gray);
-            color: #555;
-            padding: 3px 10px;
+            background-color: rgba(230, 126, 34, 0.1);
+            color: var(--accent-color);
+            padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
-            font-weight: 500;
+            font-weight: 600;
+            border: 1px solid rgba(230, 126, 34, 0.2);
+            transition: all 0.2s;
+        }
+        .tag:hover {
+            background-color: var(--accent-color);
+            color: #fff;
         }
 
         /* --- Grid Layout for Media --- */
         .media-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
         }
         .media-card {
             border: 1px solid #eee;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            transition: transform 0.2s;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             text-decoration: none;
             color: inherit;
             background: #fff;
             display: flex;
             flex-direction: column;
         }
-        .media-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .media-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08); 
+            border-color: #ddd;
+        }
         .media-thumb {
             width: 100%;
-            height: 140px;
+            height: 150px;
             background-color: #e9ecef;
             object-fit: cover;
             display: block;
         }
-        .media-thumb-placeholder {
-            width: 100%;
-            height: 140px;
-            background-color: #e9ecef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #ccc;
-        }
-        .media-content { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .media-title { font-weight: bold; font-size: 1rem; margin-bottom: 10px; line-height: 1.4; }
-        .media-date { font-size: 0.8rem; color: #999; }
+        .media-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .media-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 12px; line-height: 1.4; color: #222;}
+        .media-date { font-size: 0.85rem; color: #999; font-weight: 500;}
 
         /* --- List Styles --- */
-        .list-style-none { list-style: none; padding: 0; }
-        .list-style-none li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+        .pub-list, .patent-list, .award-list { list-style: none; padding: 0; }
         
-        /* Publications Icon */
-        .pub-list { list-style: none; padding: 0; }
-        .pub-list li { margin-bottom: 15px; padding-left: 25px; position: relative; }
-        .pub-list li::before { content: "📄"; position: absolute; left: 0; top: 2px; font-size: 1rem; }
-        
-        /* Patents Icon */
-        .patent-list { list-style: none; padding: 0; }
-        .patent-list li { margin-bottom: 15px; padding-left: 25px; position: relative; }
-        .patent-list li::before { content: "💡"; position: absolute; left: 0; top: 2px; font-size: 1rem; }
-        
-        /* Awards Icon */
-        .award-list { list-style: none; padding: 0; }
-        .award-list li { margin-bottom: 15px; padding-left: 25px; position: relative; }
-        .award-list li::before { content: "🏆"; position: absolute; left: 0; top: 2px; font-size: 1rem; }
+        /* Icons & Highlights */
+        .pub-list li, .patent-list li, .award-list li { 
+            margin-bottom: 18px; padding-left: 28px; position: relative; 
+            transition: transform 0.2s;
+        }
+        .pub-list li:hover, .patent-list li:hover, .award-list li:hover {
+            transform: translateX(3px);
+        }
+        .pub-list li::before { content: "📄"; position: absolute; left: 0; top: 2px; font-size: 1.1rem; }
+        .patent-list li::before { content: "💡"; position: absolute; left: 0; top: 2px; font-size: 1.1rem; }
+        .award-list li::before { content: "🏆"; position: absolute; left: 0; top: 2px; font-size: 1.1rem; }
 
-        .list-title { font-weight: 600; color: #222; }
-        .list-info { font-size: 0.9rem; color: #666; margin-top: 2px; }
+        .list-title { font-weight: 600; color: #222; font-size: 1.05rem; line-height: 1.4; }
+        .list-info { font-size: 0.95rem; color: #666; margin-top: 4px; }
+        
+        /* 이름 강조 (Bold) 색상 처리 */
+        .pub-info strong { color: var(--primary-color); font-weight: 800; }
 
-        /* --- Footer --- */
         footer { text-align: center; padding: 60px 20px; color: #999; font-size: 0.85rem; }
 
         @media (max-width: 600px) {
-            header { padding: 40px 20px; }
-            h1 { font-size: 2rem; }
-            .item-header { flex-direction: column; gap: 4px; }
+            header { padding: 60px 20px 40px; }
+            h1 { font-size: 2.2rem; }
+            section { padding: 25px; margin: 20px 0; }
+            .item-header { flex-direction: column; gap: 8px; }
+            .item-date { align-self: flex-start; }
+            .item:hover { transform: none; } /* 모바일에서는 호버 움직임 방지 */
         }
     </style>
 </head>
@@ -209,6 +260,7 @@
                 <span class="item-role">Research Intern | 서강대학교</span>
                 <div class="item-desc">
                     <ul>
+                        <li>TBD (To Be Determined)</li>
                     </ul>
                 </div>
             </div>
@@ -221,8 +273,8 @@
                 <div class="item-desc">
                     <ul>
                         <li>정부 보안 연구과제 참여</li>
+                        <li>GNSS 재밍 식별 및 WLAN 기반 실내 측위 정밀도 분석</li>
                         <li>연구비 지출 관리 및 학회 논문 작성 (한국통신학회 발표)</li>
-                        <li>연구실 내 로봇 프로젝트 참여</li>
                     </ul>
                 </div>
             </div>
@@ -248,6 +300,7 @@
                     <span class="tag">Startup</span>
                     <span class="tag">Deep Learning</span>
                     <span class="tag">Robotics</span>
+                    <span class="tag">Hardware</span>
                 </div>
             </div>
 
@@ -278,20 +331,20 @@
             <h2>Publications</h2>
             <ul class="pub-list">
                 <li>
-                    <div class="pub-title">WLAN의 RSSI를 활용한 AP와 실내 모바일 로봇의 거리 측정 정밀도 분석</div>
-                    <div class="pub-info">강균묵, 김경우, et al. | 한국통신학회 동계학술대회 (2025)</div>
+                    <div class="list-title">WLAN의 RSSI를 활용한 AP와 실내 모바일 로봇의 거리 측정 정밀도 분석</div>
+                    <div class="list-info pub-info">강균묵, <strong>김경우</strong>, et al. | 한국통신학회 동계학술대회 (2025)</div>
                 </li>
                 <li>
-                    <div class="pub-title">학습 집합 크기에 따른 ResNet-50/SVM 기반 GNSS 재밍 식별 기법 성능 분석</div>
-                    <div class="pub-info">유재덕, 정희수, 김경우, et al. | 한국통신학회 동계학술대회 (2025)</div>
+                    <div class="list-title">학습 집합 크기에 따른 ResNet-50/SVM 기반 GNSS 재밍 식별 기법 성능 분석</div>
+                    <div class="list-info pub-info">유재덕, 정희수, <strong>김경우</strong>, et al. | 한국통신학회 동계학술대회 (2025)</div>
                 </li>
                 <li>
-                    <div class="pub-title">달 탐사 로버의 위치 기반 군집 제어 방안 (Oral Presentation)</div>
-                    <div class="pub-info">김경우, 강균묵, 조남석, 이태영 | 제어로봇시스템학회(ICROS) 하계학술대회 (2024)</div>
+                    <div class="list-title">달 탐사 로버의 위치 기반 군집 제어 방안 (Oral Presentation)</div>
+                    <div class="list-info pub-info"><strong>김경우</strong>, 강균묵, 조남석, 이태영 | 제어로봇시스템학회(ICROS) 하계학술대회 (2024)</div>
                 </li>
                 <li>
-                    <div class="pub-title">달 탐사 로버 휠의 휠-지형 상관 모델 검증을 위한 테스트베드 구성</div>
-                    <div class="pub-info">박정원, ..., 김경우, et al. | 한국항공우주학회 추계학술발표회 (2023)</div>
+                    <div class="list-title">달 탐사 로버 휠의 휠-지형 상관 모델 검증을 위한 테스트베드 구성</div>
+                    <div class="list-info pub-info">박정원, ..., <strong>김경우</strong>, et al. | 한국항공우주학회 추계학술발표회 (2023)</div>
                 </li>
             </ul>
         </section>
@@ -319,12 +372,13 @@
             <ul class="award-list">
                 <li><strong>건국대학교 개교 79주년 기념 대외영예상 (총장상)</strong> | 2025</li>
                 <li><strong>학생창업유망팀 300+ 인증 (교육부 장관)</strong> | 2025</li>
+                <li>건국대학교 에코업 프런티어 캠퍼스 (대학교육혁신원장상) | 2025</li>
                 <li><strong>제22회 임베디드 SW경진대회 대상 (산업통상자원부 장관상)</strong> | 2024</li>
                 <li>24-2 건국대학교 Learning & Sharing 최우수상 (대학교육혁신원장상) | 2024</li>
                 <li>제16회 건국대학교 창의설계경진대회 대상 (총장상) | 2024</li>
                 <li>2023 R-BIZ 챌린지 우주 탐사 개발 로봇 챌린지 2위 (특허청장상) | 2023</li>
                 <li>청소년 비즈쿨 공로 표창 (중소기업청장상) | 2016</li>
-                <li style="color: var(--primary-color);"><strong>TOEIC 980</strong> | 2025.03</li>
+                <li style="color: var(--accent-color);"><strong>TOEIC 980점</strong> | 2025.03</li>
             </ul>
         </section>
 
@@ -348,7 +402,7 @@
                 <a href="https://blog.naver.com/dreamkonkuk/223683141236" target="_blank" class="media-card">
                     <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='140'%3E%3Crect fill='%23e9ecef' width='400' height='140'/%3E%3Ctext x='50%25' y='50%25' font-size='60' font-weight='bold' text-anchor='middle' dy='.3em' fill='%23ddd'%3E📰%3C/text%3E%3C/svg%3E" alt="건국대학교" class="media-thumb" data-src="https://blogthumb.naver.net/MjAyNDEyMDRfMTcz/MDAxNzAxNjMwOTI1NzI3.bWa9TgIkTZBZQFN0PQ0_j5LHJPoKEp3dLNFcJzFHaHEg.RxY_mqPyqT5SqSBCRBqO2ZJ_1RTLLPAZr7s4-lZDfDsg.JPEG.dreamkonkuk/SE-a52eb3e4-4fb6-447b-a08a-17b0c93dc90a.jpg">
                     <div class="media-content">
-                        <div class="media-title">[건국대 공식 블로그] 제22회 임베디드 SW경진대회 대상 및 제16회 창의설계경진대회 대상 수상 커피바라팀 인터뷰</div>
+                        <div class="media-title">[건국대 공식 블로그] 제22회 임베디드 SW경진대회 대상 수상 커피바라팀 인터뷰</div>
                         <div class="media-date">2024.12.05 | 건국대학교</div>
                     </div>
                 </a>
@@ -358,15 +412,13 @@
     </div>
 
     <footer>
-        <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fcasekim-dev.github.io&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+        <a href="https://hits.seeyoufarm.com" target="_blank"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fcasekim-dev.github.io&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false" alt="hits badge"/></a>
         <p>&copy; 2026 Kim Kyung-woo. All rights reserved.</p>
     </footer>
 
     <script>
-        // 이미지 지연 로딩 및 에러 처리
         document.addEventListener('DOMContentLoaded', function() {
             const mediaImages = document.querySelectorAll('.media-thumb');
-            
             mediaImages.forEach(img => {
                 const dataSrc = img.getAttribute('data-src');
                 if (dataSrc) {
@@ -374,10 +426,6 @@
                     newImg.onload = function() {
                         img.src = dataSrc;
                         img.removeAttribute('data-src');
-                    };
-                    newImg.onerror = function() {
-                        // 이미지 로드 실패 시 기본 SVG 유지
-                        console.log('이미지 로드 실패: ' + dataSrc);
                     };
                     newImg.src = dataSrc;
                 }
