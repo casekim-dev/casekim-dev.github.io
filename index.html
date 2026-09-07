@@ -3,230 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kim Kyung-woo | Robotics Engineer</title>
-    
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <meta name="description" content="김경우 개인 홈페이지">
+    <title>Kim Kyungwoo</title>
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --accent-color: #e67e22;
-            --text-color: #333;
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --light-gray: #f0f2f5;
-        }
-        body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            overflow-x: hidden; /* 스크롤 애니메이션 시 가로 흔들림 방지 */
+            --bg: #f7f7f8;
+            --surface: #ffffff;
+            --text: #1f2328;
+            --muted: #6b7280;
+            --line: #e5e7eb;
+            --link: #334155;
+            --max-width: 900px;
         }
 
-        /* --- Header Animation --- */
-        @keyframes headerFadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
+
+        a { color: inherit; }
+
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(247, 247, 248, 0.96);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            min-height: 58px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .nav-links::-webkit-scrollbar { display: none; }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.86rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover { color: var(--text); }
 
         header {
-            text-align: center;
-            padding: 100px 20px 70px;
-            background: linear-gradient(to bottom, #ffffff, var(--bg-color));
-            animation: headerFadeIn 1s ease-out; /* 헤더는 로드되자마자 나타남 */
-        }
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            background-color: #eee;
-            transition: transform 0.3s ease;
-        }
-        .profile-img:hover {
-            transform: scale(1.05);
-        }
-        
-        h1 { 
-            margin: 0; 
-            font-size: 2.8rem; 
-            font-weight: 800;
-            letter-spacing: -0.5px; 
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .tagline { color: #555; font-size: 1.15rem; margin-top: 15px; font-weight: 400; }
-        .contact-info { margin-top: 25px; font-size: 1rem; font-weight: 500; }
-        .contact-info a { 
-            color: var(--primary-color); 
-            text-decoration: none; 
-            margin: 0 12px; 
-            padding-bottom: 2px;
-            transition: all 0.3s;
-            border-bottom: 2px solid transparent;
-        }
-        .contact-info a:hover { 
-            color: var(--accent-color); 
-            border-bottom-color: var(--accent-color); 
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 72px 20px 44px;
         }
 
-        /* --- ✨ Scroll Reveal Sections ✨ --- */
-        section {
-            background: var(--card-bg);
-            margin: 40px 0;
-            padding: 45px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            
-            /* 스크롤 전 기본 상태 (숨김 & 아래로 살짝 내려가 있음) */
-            opacity: 0; 
-            transform: translateY(40px); 
-            transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        h1 {
+            margin: 0;
+            font-size: clamp(2.3rem, 6vw, 3.7rem);
+            line-height: 1.15;
+            letter-spacing: -0.045em;
         }
-        
-        /* 스크롤 시 부여될 클래스 (나타남) */
-        section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        .name-en {
+            display: block;
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 0.42em;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .contact-info a {
+            color: var(--link);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .contact-info a:hover { border-bottom-color: var(--link); }
+
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px 48px;
+        }
+
+        section {
+            margin: 0 0 22px;
+            padding: 32px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            scroll-margin-top: 78px;
         }
 
         h2 {
-            border-left: 5px solid var(--accent-color);
-            padding-left: 18px;
-            margin-bottom: 35px;
-            color: var(--primary-color);
-            font-size: 1.6rem;
-            letter-spacing: -0.3px;
+            margin: 0 0 24px;
+            font-size: 1.35rem;
+            letter-spacing: -0.025em;
         }
 
-        /* --- Item Layout --- */
-        .item { 
-            margin-bottom: 25px; 
-            padding: 20px; 
-            border-radius: 12px;
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
+        .item {
+            padding: 18px 0;
+            border-top: 1px solid var(--line);
         }
-        .item:hover {
-            background-color: #fcfcfc;
-            border-color: #f0f0f0;
-            transform: translateX(5px);
-            box-shadow: -5px 5px 15px rgba(0,0,0,0.02);
+
+        .item:first-of-type {
+            padding-top: 0;
+            border-top: 0;
         }
-        .item-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
-        .item-title { font-weight: 700; font-size: 1.2rem; color: #111; }
-        .item-date { color: #888; font-size: 0.9rem; font-weight: 600; background: var(--light-gray); padding: 4px 10px; border-radius: 20px;}
-        .item-role { font-weight: 600; color: var(--accent-color); display: block; margin-bottom: 8px; font-size: 0.95rem; }
-        .item-desc { color: #444; font-size: 0.95rem; }
-        .item-desc ul { margin: 5px 0 0 0; padding-left: 20px; }
-        .item-desc li { margin-bottom: 6px; }
-        
-        /* --- Tags --- */
-        .tech-stack { margin-top: 15px; display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag {
-            background-color: rgba(230, 126, 34, 0.1);
-            color: var(--accent-color);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+
+        .item:last-child { padding-bottom: 0; }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .item-title {
+            font-weight: 700;
+            font-size: 1.03rem;
+        }
+
+        .item-date {
+            color: var(--muted);
+            font-size: 0.84rem;
+            white-space: nowrap;
+        }
+
+        .item-role {
+            display: block;
+            margin-top: 3px;
+            color: #4b5563;
+            font-size: 0.91rem;
             font-weight: 600;
-            border: 1px solid rgba(230, 126, 34, 0.2);
-            transition: all 0.2s;
         }
-        .tag:hover { background-color: var(--accent-color); color: #fff; }
 
-        /* --- Media Grid --- */
+        .item-desc {
+            margin-top: 8px;
+            color: #4b5563;
+            font-size: 0.92rem;
+        }
+
+        .item-desc ul {
+            margin: 6px 0 0;
+            padding-left: 19px;
+        }
+
+        .item-desc li { margin-bottom: 4px; }
+
+        .pub-list,
+        .patent-list,
+        .award-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pub-list li,
+        .patent-list li,
+        .award-list li {
+            padding: 14px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .pub-list li:first-child,
+        .patent-list li:first-child,
+        .award-list li:first-child {
+            padding-top: 0;
+            border-top: 0;
+        }
+
+        .pub-list li:last-child,
+        .patent-list li:last-child,
+        .award-list li:last-child { padding-bottom: 0; }
+
+        .list-title {
+            font-weight: 650;
+            line-height: 1.5;
+        }
+
+        .list-info {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
         .media-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
         }
+
         .media-card {
-            border: 1px solid #eee;
-            border-radius: 16px;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            text-decoration: none;
-            color: inherit;
+            border: 1px solid var(--line);
+            border-radius: 10px;
             background: #fff;
-            display: flex;
-            flex-direction: column;
+            text-decoration: none;
         }
-        .media-card:hover { 
-            transform: translateY(-8px); 
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08); 
-            border-color: #ddd;
-        }
+
+        .media-card:hover { border-color: #c7cbd1; }
+
         .media-thumb {
             width: 100%;
-            height: 150px;
-            background-color: #e9ecef;
-            object-fit: cover;
+            height: 140px;
             display: block;
+            object-fit: cover;
+            background: #f0f1f2;
         }
-        .media-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .media-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 12px; line-height: 1.4; color: #222;}
-        .media-date { font-size: 0.85rem; color: #999; font-weight: 500;}
 
-        /* --- Lists --- */
-        .pub-list, .patent-list, .award-list { list-style: none; padding: 0; }
-        .pub-list li, .patent-list li, .award-list li { margin-bottom: 18px; padding-left: 28px; position: relative; transition: transform 0.2s; }
-        .pub-list li:hover, .patent-list li:hover, .award-list li:hover { transform: translateX(3px); }
-        .pub-list li::before { content: "📄"; position: absolute; left: 0; top: 2px; font-size: 1.1rem; }
-        .patent-list li::before { content: "💡"; position: absolute; left: 0; top: 2px; font-size: 1.1rem; }
-        .award-list li::before { content: "🏆"; position: absolute; left: 0; top: 2px; font-size: 1.1rem; }
+        .media-content { padding: 14px; }
 
-        .list-title { font-weight: 600; color: #222; font-size: 1.05rem; line-height: 1.4; }
-        .list-info { font-size: 0.95rem; color: #666; margin-top: 4px; }
-        .pub-info strong { color: var(--primary-color); font-weight: 800; }
+        .media-title {
+            font-size: 0.91rem;
+            font-weight: 650;
+            line-height: 1.5;
+        }
 
-        footer { text-align: center; padding: 60px 20px; color: #999; font-size: 0.85rem; }
+        .media-date {
+            margin-top: 7px;
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
 
-        @media (max-width: 600px) {
-            header { padding: 60px 20px 40px; }
-            h1 { font-size: 2.2rem; }
-            section { padding: 25px; margin: 20px 0; }
-            .item-header { flex-direction: column; gap: 8px; }
-            .item-date { align-self: flex-start; }
-            .item:hover { transform: none; }
+        footer {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px 42px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        footer img { display: block; }
+
+        @media (max-width: 720px) {
+            .nav-inner { align-items: flex-start; padding-top: 15px; padding-bottom: 15px; }
+            .nav-links { max-width: 70%; }
+            header { padding-top: 52px; }
+            section { padding: 24px 20px; }
+            .media-grid { grid-template-columns: 1fr; }
+            .media-thumb { height: 180px; }
+        }
+
+        @media (max-width: 520px) {
+            .brand { display: none; }
+            .nav-links { max-width: 100%; }
+            .item-header { flex-direction: column; align-items: flex-start; gap: 3px; }
+            header, main, footer { padding-left: 14px; padding-right: 14px; }
         }
     </style>
 </head>
 <body>
+    <nav class="top-nav" aria-label="주요 메뉴">
+        <div class="nav-inner">
+            <a class="brand" href="#top">Kim Kyungwoo</a>
+            <div class="nav-links">
+                <a href="#education">Education</a>
+                <a href="#research">Research</a>
+                <a href="#work">Work</a>
+                <a href="#publications">Publications</a>
+                <a href="#patents">Patents</a>
+                <a href="#awards">Awards</a>
+                <a href="#media">Media</a>
+            </div>
+        </div>
+    </nav>
 
-    <header>
-        <h1>김경우 (Kim Kyungwoo)</h1>
-        <p class="tagline">"사람을 위한 따뜻한 기술로 세상을 바꿀 수 있다고 믿습니다"</p>
+    <header id="top">
+        <h1>김경우</h1>
         <div class="contact-info">
             <a href="mailto:casekim41@gmail.com">Email</a>
-            <a href="https://github.com/casekim-dev" target="_blank">GitHub</a>
-            <a href="https://blog.naver.com/casekim_" target="_blank">Blog</a>
-            <a href="https://www.linkedin.com/in/casetech41" target="_blank">LinkedIn</a>
+            <a href="https://github.com/casekim-dev" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://blog.naver.com/casekim_" target="_blank" rel="noopener noreferrer">Blog</a>
+            <a href="https://www.linkedin.com/in/casetech41" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
     </header>
 
-    <div class="container">
-        
+    <main>
         <section id="education">
             <h2>Education</h2>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">서강대학교</span>
+                    <span class="item-date">2026.09 ~ Present</span>
+                </div>
+                <span class="item-role">전자공학과 석·박사통합과정</span>
+            </div>
             <div class="item">
                 <div class="item-header">
                     <span class="item-title">건국대학교</span>
                     <span class="item-date">2020.03 ~ 2026.08</span>
                 </div>
-                <div class="item-desc">전기전자공학부 학사</div>
+                <span class="item-role">전기전자공학부 학사</span>
             </div>
             <div class="item">
                 <div class="item-header">
@@ -241,14 +353,21 @@
             <div class="item">
                 <div class="item-header">
                     <span class="item-title">AI Robotics Lab (AIR Lab)</span>
-                    <span class="item-date">2026.02 ~ Present</span>
+                    <span class="item-date">2026.09 ~ Present</span>
                 </div>
-                <span class="item-role">Research Intern | 서강대학교</span>
+                <span class="item-role">Graduate Researcher | 서강대학교</span>
                 <div class="item-desc">
                     <ul>
                         <li>Loco-Manipulation for Humanoids, AI models for robot control</li>
                     </ul>
                 </div>
+            </div>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">AI Robotics Lab (AIR Lab)</span>
+                    <span class="item-date">2026.02 ~ 2026.08</span>
+                </div>
+                <span class="item-role">Research Intern | 서강대학교</span>
             </div>
             <div class="item">
                 <div class="item-header">
@@ -270,26 +389,31 @@
             <h2>Work Experience</h2>
             <div class="item">
                 <div class="item-header">
-                    <span class="item-title">커피바라 (Coffeebara)</span>
-                    <span class="item-date">2025.01 ~ </span>
+                    <span class="item-title">Vertical Labs (버티컬랩스)</span>
+                    <span class="item-date">2026.07 ~ Present</span>
                 </div>
-                <span class="item-role">Founder & CEO</span>
+                <span class="item-role">기획팀장</span>
                 <div class="item-desc">
                     <ul>
-                        <li><strong>일회용 컵 완전 자동 분리 시스템 'NOCO' 개발 및 사업화 총괄</strong></li>
-                        <li>CES2026 서울통합관 참가 및 AI 분리배출 로봇 'NOCO' 공개</li>
+                        <li>Easy Trainer 제품 기획 및 기술영업</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">커피바라 (Coffeebara)</span>
+                    <span class="item-date">2025.01 ~ Present</span>
+                </div>
+                <span class="item-role">Founder</span>
+                <div class="item-desc">
+                    <ul>
+                        <li>일회용 컵 완전 자동 분리 시스템 'NOCO' 개발 및 사업화 총괄</li>
+                        <li>CES 2026 서울통합관 참가 및 AI 분리배출 로봇 'NOCO' 공개</li>
                         <li>2025 학생창업유망팀 300+ 최종 선정</li>
                         <li>건국대학교 캠퍼스타운사업단 입주기업 (2025.05~)</li>
                     </ul>
                 </div>
-                <div class="tech-stack">
-                    <span class="tag">Startup</span>
-                    <span class="tag">Deep Learning</span>
-                    <span class="tag">Robotics</span>
-                    <span class="tag">Hardware</span>
-                </div>
             </div>
-
             <div class="item">
                 <div class="item-header">
                     <span class="item-title">(주)무인탐사연구소 (UEL)</span>
@@ -298,17 +422,11 @@
                 <span class="item-role">Embedded System Researcher</span>
                 <div class="item-desc">
                     <ul>
-                        <li><strong>🚀 누리호(KSLV-II) 4차 발사 부탑재위성 탑재체 개발 참여</strong></li>
-                        <li>- 위성 임베디드 시스템 설계 및 탑재체 데이터 처리 로직 구현 (C/C++, STM32)</li>
+                        <li>누리호(KSLV-II) 4차 발사 부탑재위성 탑재체 개발 참여</li>
+                        <li>위성 임베디드 시스템 설계 및 탑재체 데이터 처리 로직 구현 (C/C++, STM32)</li>
                         <li>건설 현장 및 험지 주행용 로버의 ROS 기반 시스템 개발</li>
                         <li>CAN 통신 프로토콜 최적화 및 모터 제어기 펌웨어 개발</li>
                     </ul>
-                </div>
-                <div class="tech-stack">
-                    <span class="tag">Aerospace</span>
-                    <span class="tag">ROS2</span>
-                    <span class="tag">Embedded C/C++</span>
-                    <span class="tag">STM32</span>
                 </div>
             </div>
         </section>
@@ -318,19 +436,19 @@
             <ul class="pub-list">
                 <li>
                     <div class="list-title">WLAN의 RSSI를 활용한 AP와 실내 모바일 로봇의 거리 측정 정밀도 분석</div>
-                    <div class="list-info pub-info">강균묵, <strong>김경우</strong>, et al. | 한국통신학회 동계학술대회 (2025)</div>
+                    <div class="list-info">강균묵, <strong>김경우</strong>, et al. | 한국통신학회 동계학술대회 (2025)</div>
                 </li>
                 <li>
                     <div class="list-title">학습 집합 크기에 따른 ResNet-50/SVM 기반 GNSS 재밍 식별 기법 성능 분석</div>
-                    <div class="list-info pub-info">유재덕, 정희수, <strong>김경우</strong>, et al. | 한국통신학회 동계학술대회 (2025)</div>
+                    <div class="list-info">유재덕, 정희수, <strong>김경우</strong>, et al. | 한국통신학회 동계학술대회 (2025)</div>
                 </li>
                 <li>
                     <div class="list-title">달 탐사 로버의 위치 기반 군집 제어 방안 (Oral Presentation)</div>
-                    <div class="list-info pub-info"><strong>김경우</strong>, 강균묵, 조남석, 이태영 | 제어로봇시스템학회(ICROS) 하계학술대회 (2024)</div>
+                    <div class="list-info"><strong>김경우</strong>, 강균묵, 조남석, 이태영 | 제어로봇시스템학회(ICROS) 하계학술대회 (2024)</div>
                 </li>
                 <li>
                     <div class="list-title">달 탐사 로버 휠의 휠-지형 상관 모델 검증을 위한 테스트베드 구성</div>
-                    <div class="list-info pub-info">박정원, ..., <strong>김경우</strong>, et al. | 한국항공우주학회 추계학술발표회 (2023)</div>
+                    <div class="list-info">박정원, ..., <strong>김경우</strong>, et al. | 한국항공우주학회 추계학술발표회 (2023)</div>
                 </li>
             </ul>
         </section>
@@ -340,106 +458,85 @@
             <ul class="patent-list">
                 <li>
                     <div class="list-title">태양광 패널 및 모터를 이용하여 태양광 에너지를 효율적으로 획득하고 관리하는 태양광 에너지 관리 방법</div>
-                    <div class="list-info">
-                        등록번호: 1028753540000 (2025.10.20) | 출원: 1020250004494 (2025.01.13)
-                    </div>
+                    <div class="list-info">등록번호: 1028753540000 (2025.10.20) | 출원: 1020250004494 (2025.01.13)</div>
                 </li>
                 <li>
                     <div class="list-title">일회용 컵 분리 배출 장치</div>
-                    <div class="list-info">
-                        출원번호: 10-2025-0031410 (2025.03.11)
-                    </div>
+                    <div class="list-info">출원번호: 10-2025-0031410 (2025.03.11)</div>
                 </li>
             </ul>
         </section>
 
         <section id="awards">
-            <h2>Honors & Awards</h2>
+            <h2>Honors &amp; Awards</h2>
             <ul class="award-list">
                 <li><strong>건국대학교 개교 79주년 기념 대외영예상 (총장상)</strong> | 2025</li>
                 <li><strong>학생창업유망팀 300+ 인증 (교육부 장관)</strong> | 2025</li>
-                <li>건국대학교 에코업 프런티어 캠퍼스 (대학교육혁신원장상) | 2025</li>
+                <li>건국대학교 에코업 프런티어 캠퍼스 최우수상 (대학교육혁신원장상) | 2025</li>
                 <li><strong>제22회 임베디드 SW경진대회 대상 (산업통상자원부 장관상)</strong> | 2024</li>
-                <li>24-2 건국대학교 Learning & Sharing 최우수상 (대학교육혁신원장상) | 2024</li>
+                <li>24-2 건국대학교 Learning &amp; Sharing 최우수상 (대학교육혁신원장상) | 2024</li>
                 <li>제16회 건국대학교 창의설계경진대회 대상 (총장상) | 2024</li>
                 <li>2023 R-BIZ 챌린지 우주 탐사 개발 로봇 챌린지 2위 (특허청장상) | 2023</li>
                 <li>제15회 건국대학교 창의설계경진대회 장려상 (공과대학 학장상) | 2024</li>
                 <li>청소년 비즈쿨 공로 표창 (중소기업청장상) | 2016</li>
                 <li>청소년 기업가정신 캠프 투자 시뮬레이션 최우수 (창업진흥원장상) | 2016</li>
                 <li>청소년 비즈쿨 우수활동사례 (창업진흥원장상) | 2015</li>
-                <li style="color: var(--accent-color);"><strong>TOEIC 980점</strong> | 2025.03</li>
+                <li><strong>TOEIC 980점</strong> | 2025.03</li>
             </ul>
         </section>
 
         <section id="media">
             <h2>Media Coverage</h2>
             <div class="media-grid">
-                <a href="https://n.news.naver.com/mnews/article/469/0000907281?sid=101" target="_blank" class="media-card">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='140'%3E%3Crect fill='%23e9ecef' width='400' height='140'/%3E%3Ctext x='50%25' y='50%25' font-size='60' font-weight='bold' text-anchor='middle' dy='.3em' fill='%23ddd'%3E📰%3C/text%3E%3C/svg%3E" alt="CES 2026" class="media-thumb" data-src="https://img.hankookilbo.com/upload-images/2026/01/06/0000993_20260106103020.jpg">
+                <a href="https://www.konkuk.ac.kr/bbs/konkuk/257/1202876/artclView.do?layout=unknown" target="_blank" rel="noopener noreferrer" class="media-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='140'%3E%3Crect fill='%23f0f1f2' width='400' height='140'/%3E%3C/svg%3E" alt="건국대학교 기사" class="media-thumb" loading="lazy">
+                    <div class="media-content">
+                        <div class="media-title">'경영+공학' 융합형 창업 인재 키우는 건국대의 뜨거운 여름</div>
+                        <div class="media-date">2026.08.07 · 건국대학교</div>
+                    </div>
+                </a>
+                <a href="https://n.news.naver.com/mnews/article/469/0000907281?sid=101" target="_blank" rel="noopener noreferrer" class="media-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='140'%3E%3Crect fill='%23f0f1f2' width='400' height='140'/%3E%3C/svg%3E" alt="CES 2026 커피바라 NOCO 기사" class="media-thumb" loading="lazy" data-src="https://img.hankookilbo.com/upload-images/2026/01/06/0000993_20260106103020.jpg">
                     <div class="media-content">
                         <div class="media-title">[CES 2026 서울통합관] 커피바라, CES 2026서 AI 분리배출 로봇 'NOCO' 공개</div>
-                        <div class="media-date">2026.01.06. | 한국일보</div>
+                        <div class="media-date">2026.01.06 · 한국일보</div>
                     </div>
                 </a>
-                <a href="https://n.news.naver.com/mnews/article/047/0002391373?sid=103" target="_blank" class="media-card">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='140'%3E%3Crect fill='%23e9ecef' width='400' height='140'/%3E%3Ctext x='50%25' y='50%25' font-size='60' font-weight='bold' text-anchor='middle' dy='.3em' fill='%23ddd'%3E📰%3C/text%3E%3C/svg%3E" alt="오마이뉴스" class="media-thumb" data-src="https://dnvefa72aaa6o.cloudfront.net/origin/article/4740/20230508/0000391373_20230508082716.jpg?type=f400_300&expires=2147483647&hmac=7s4PqYGNzfKEh6YNI0VrJUEFYtY8ZKGCgBhvExs58Z8">
+                <a href="https://n.news.naver.com/mnews/article/047/0002391373?sid=103" target="_blank" rel="noopener noreferrer" class="media-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='140'%3E%3Crect fill='%23f0f1f2' width='400' height='140'/%3E%3C/svg%3E" alt="오마이뉴스 인터뷰" class="media-thumb" loading="lazy" data-src="https://dnvefa72aaa6o.cloudfront.net/origin/article/4740/20230508/0000391373_20230508082716.jpg?type=f400_300&amp;expires=2147483647&amp;hmac=7s4PqYGNzfKEh6YNI0VrJUEFYtY8ZKGCgBhvExs58Z8">
                     <div class="media-content">
                         <div class="media-title">소방관 아버지 보며 로봇의 꿈을 키운 대학생입니다</div>
-                        <div class="media-date">2023.05.08. | 오마이뉴스</div>
+                        <div class="media-date">2023.05.08 · 오마이뉴스</div>
                     </div>
                 </a>
-                <a href="https://blog.naver.com/dreamkonkuk/223683141236" target="_blank" class="media-card">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='140'%3E%3Crect fill='%23e9ecef' width='400' height='140'/%3E%3Ctext x='50%25' y='50%25' font-size='60' font-weight='bold' text-anchor='middle' dy='.3em' fill='%23ddd'%3E📰%3C/text%3E%3C/svg%3E" alt="건국대학교" class="media-thumb" data-src="https://blogthumb.naver.net/MjAyNDEyMDRfMTcz/MDAxNzAxNjMwOTI1NzI3.bWa9TgIkTZBZQFN0PQ0_j5LHJPoKEp3dLNFcJzFHaHEg.RxY_mqPyqT5SqSBCRBqO2ZJ_1RTLLPAZr7s4-lZDfDsg.JPEG.dreamkonkuk/SE-a52eb3e4-4fb6-447b-a08a-17b0c93dc90a.jpg">
+                <a href="https://blog.naver.com/dreamkonkuk/223683141236" target="_blank" rel="noopener noreferrer" class="media-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='140'%3E%3Crect fill='%23f0f1f2' width='400' height='140'/%3E%3C/svg%3E" alt="건국대학교 임베디드SW경진대회 인터뷰" class="media-thumb" loading="lazy" data-src="https://blogthumb.naver.net/MjAyNDEyMDRfMTcz/MDAxNzAxNjMwOTI1NzI3.bWa9TgIkTZBZQFN0PQ0_j5LHJPoKEp3dLNFcJzFHaHEg.RxY_mqPyqT5SqSBCRBqO2ZJ_1RTLLPAZr7s4-lZDfDsg.JPEG.dreamkonkuk/SE-a52eb3e4-4fb6-447b-a08a-17b0c93dc90a.jpg">
                     <div class="media-content">
                         <div class="media-title">[건국대 공식 블로그] 제22회 임베디드 SW경진대회 대상 수상 커피바라팀 인터뷰</div>
-                        <div class="media-date">2024.12.05 | 건국대학교</div>
+                        <div class="media-date">2024.12.05 · 건국대학교</div>
                     </div>
                 </a>
             </div>
         </section>
-
-    </div>
+    </main>
 
     <footer>
-        <a href="https://hits.seeyoufarm.com" target="_blank"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fcasekim-dev.github.io&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false" alt="hits badge"/></a>
-        <p>&copy; 2026 Kim Kyung-woo. All rights reserved.</p>
+        <span>© 2026 Kim Kyungwoo.</span>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 1. 이미지 지연 로딩 처리
-            const mediaImages = document.querySelectorAll('.media-thumb');
+        document.addEventListener('DOMContentLoaded', () => {
+            const mediaImages = document.querySelectorAll('.media-thumb[data-src]');
             mediaImages.forEach(img => {
                 const dataSrc = img.getAttribute('data-src');
-                if (dataSrc) {
-                    const newImg = new Image();
-                    newImg.onload = function() {
-                        img.src = dataSrc;
-                        img.removeAttribute('data-src');
-                    };
-                    newImg.src = dataSrc;
-                }
-            });
+                if (!dataSrc) return;
 
-            // 2. ✨ Scroll Reveal (Intersection Observer) ✨
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15 // 섹션이 화면에 15% 이상 보일 때 작동
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target); // 한 번 보이면 감지 해제 (반복 재생 방지)
-                    }
-                });
-            }, observerOptions);
-
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                observer.observe(section);
+                const preload = new Image();
+                preload.onload = () => {
+                    img.src = dataSrc;
+                    img.removeAttribute('data-src');
+                };
+                preload.src = dataSrc;
             });
         });
     </script>
