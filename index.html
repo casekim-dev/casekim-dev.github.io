@@ -9,6 +9,26 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 
+    <!-- Google Analytics 4
+         1) Google Analytics > Admin > Data streams > Web 에서 Measurement ID(G-...)를 확인
+         2) 아래 G-XXXXXXXXXX를 실제 Measurement ID로 교체
+         ID를 교체하기 전에는 Analytics 스크립트가 로드되지 않습니다. -->
+    <script>
+        const GA_MEASUREMENT_ID = 'G-M7473DG1TX';
+
+        if (!GA_MEASUREMENT_ID.includes('M7473DG1TX')) {
+            const gaScript = document.createElement('script');
+            gaScript.async = true;
+            gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+            document.head.appendChild(gaScript);
+
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function() { dataLayer.push(arguments); };
+            gtag('js', new Date());
+            gtag('config', GA_MEASUREMENT_ID);
+        }
+    </script>
+
     <style>
         :root {
             --bg: #f7f7f8;
@@ -537,6 +557,40 @@
                     img.removeAttribute('data-src');
                 };
                 preload.src = dataSrc;
+            });
+
+            // GA4 custom click events. GA4가 활성화된 경우에만 전송됩니다.
+            const sendEvent = (eventName, params) => {
+                if (typeof window.gtag === 'function') {
+                    window.gtag('event', eventName, params);
+                }
+            };
+
+            document.querySelectorAll('.contact-info a').forEach(link => {
+                link.addEventListener('click', () => {
+                    sendEvent('contact_link_click', {
+                        link_text: link.textContent.trim(),
+                        link_url: link.href
+                    });
+                });
+            });
+
+            document.querySelectorAll('.media-card').forEach(link => {
+                link.addEventListener('click', () => {
+                    const title = link.querySelector('.media-title')?.textContent.trim() || '';
+                    sendEvent('media_click', {
+                        media_title: title,
+                        link_url: link.href
+                    });
+                });
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    sendEvent('navigation_click', {
+                        section: link.getAttribute('href')?.replace('#', '') || ''
+                    });
+                });
             });
         });
     </script>
